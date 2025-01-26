@@ -9,7 +9,8 @@ export default function layout({
 }) {
   return (
     <>
-      {children} {recentPosts}
+      {children}
+      {recentPosts}
     </>
   );
 }

@@ -1,7 +1,5 @@
 import { Button } from "@heroui/button";
 import Link from "next/link";
-import Card from "@/components/UI/Card";
-import { IPost } from "@/types";
 import Container from "@/components/UI/Container";
 import CardSkeleton from "@/components/UI/CardSkeleton";
 
