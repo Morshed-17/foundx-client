@@ -1,9 +1,7 @@
 import React from 'react'
 
-const LoadingPage = () => {
+export default function loading() {
   return (
-    <div>Loading...</div>
+    <div>gloabal loading...</div>
   )
 }
-
-export default LoadingPage
