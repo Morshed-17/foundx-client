@@ -9,10 +9,11 @@ export const registerUser = async (userData: FieldValues) => {
     const { data } = await axiosInstance.post("/auth/register", userData);
 
     if (data.success) {
-      const myCookies = await cookies();
-      myCookies.set("accessToken", data.data.accessToken);
-      myCookies.set("refreshToken", data.data.refreshToken);
+      const cookieStore = await cookies();
+      cookieStore.set("accessToken", data?.data?.accessToken);
+      cookieStore.set("refreshToken", data?.data?.refreshToken);
     }
+    return data
   } catch (error: any) {
     throw new Error(error);
   }

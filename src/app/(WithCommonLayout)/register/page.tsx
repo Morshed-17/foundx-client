@@ -3,22 +3,31 @@
 import registerValidationSchema from "@/app/schemas/register.schema";
 import FXForm from "@/components/form/FXForm";
 import FXInput from "@/components/form/FXInput";
+import { useUserRegistration } from "@/hooks/auth.hook";
 import { registerUser } from "@/services/AuthService";
 import { Button } from "@heroui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 
-import React from "react";
+import React, { useEffect } from "react";
 export default function page() {
+  const { mutate: handleUserRegistration, isPending } = useUserRegistration();
+
   const onSubmit = async (data: any) => {
     const userData = {
       ...data,
       profilePhoto:
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     };
-    console.log(userData, "inside form user data");
-     registerUser(userData);
+    handleUserRegistration(userData);
   };
+
+  if (isPending) {
+    // handle loading state
+    
+  }
+
   return (
     <div className="flex h-[calc(100vh-200px)] w-full flex-col items-center justify-center">
       <h3 className="my-2 text-2xl font-bold">Register with FoundX</h3>
