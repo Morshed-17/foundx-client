@@ -7,10 +7,21 @@ import { useUserLogin } from "@/hooks/auth.hook";
 import { Button } from "@heroui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
-import React from "react";
+
+import React, { useEffect } from "react";
 export default function page() {
-  const { mutate: handleUserRegistration, isPending } = useUserLogin();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const redirect = searchParams.get("redirect");
+
+  const {
+    mutate: handleUserRegistration,
+    isPending,
+    isSuccess,
+  } = useUserLogin();
 
   const onSubmit = async (data: any) => {
     const userData = {
@@ -19,6 +30,16 @@ export default function page() {
 
     handleUserRegistration(userData);
   };
+
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push("/");
+      }
+    }
+  }, [isSuccess, isPending]);
 
   return (
     <>

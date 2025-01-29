@@ -7,8 +7,11 @@ import {
 } from "@heroui/dropdown";
 import { Avatar } from "@heroui/avatar";
 import { useRouter } from "next/navigation";
+import { Button } from "@heroui/button";
+import { logout } from "@/services/AuthService";
 
 export default function NavbarDropdown() {
+  
   const router = useRouter();
   const handleNaviation = (pathname: string) => {
     router.push(pathname);
@@ -36,7 +39,12 @@ export default function NavbarDropdown() {
           About
         </DropdownItem>
 
-        <DropdownItem key="delete" className="text-danger" color="danger">
+        <DropdownItem
+          onPress={() => logout()}
+          key="delete"
+          className="text-danger"
+          color="danger"
+        >
           Logout
         </DropdownItem>
       </DropdownMenu>
