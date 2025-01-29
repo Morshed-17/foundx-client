@@ -41,7 +41,11 @@ export interface IUser {
   status: string;
   mobileNumber: string;
   profilePhoto: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  createdAt?: string;
+  updatedAt?: string;
+  // iat?: number
+  // exp?: number
+  __v?: number;
 }
+
+
