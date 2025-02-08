@@ -21,7 +21,9 @@ import NavbarDropdown from "./NavbarDropdown";
 import { useUser } from "@/context/user.provider";
 
 export const Navbar = () => {
-  const {user} = useUser();
+  const {user, isLoading} = useUser();
+
+
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">

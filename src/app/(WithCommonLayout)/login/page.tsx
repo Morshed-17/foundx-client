@@ -3,6 +3,7 @@ import { loginValidationSchema } from "@/app/schemas/login.schema";
 import FXForm from "@/components/form/FXForm";
 import FXInput from "@/components/form/FXInput";
 import Loading from "@/components/UI/Loading";
+import { useUser } from "@/context/user.provider";
 import { useUserLogin } from "@/hooks/auth.hook";
 import { Button } from "@heroui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import React, { useEffect } from "react";
 export default function page() {
+  const {setIsLoading: userLoading} = useUser()
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -29,6 +31,7 @@ export default function page() {
     };
 
     handleUserRegistration(userData);
+    userLoading(true)
   };
 
   useEffect(() => {

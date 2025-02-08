@@ -25,6 +25,7 @@ const Card = ({ post }: { post: IPost }) => {
         className="scale-120 z-0 h-full w-full -translate-y-6 object-cover"
         src={images[0]}
       />
+
       <CardFooter className="absolute bottom-0 z-10 justify-between border-t-1 border-zinc-100/50 bg-white/30">
         <div>
           <p className="text-tiny text-black">{city}</p>
